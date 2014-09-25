@@ -13,21 +13,35 @@ angular
     'ngAnimate',
     'ngCookies',
     'ngResource',
-    'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ui.bootstrap',
+    'ui.router'
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
+  .config(function ($stateProvider,$urlRouterProvider) {
+    $urlRouterProvider.otherwise('/card');
+
+    $stateProvider
+      .state('main', {
+        url:'',
+        abstract:true,
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
+        controllerAs:'mainCtrl'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+      .state('main.edit_card',{
+        url:'/card/edit/:themeId',
+        templateUrl:'views/card/edit_card.html',
+        controller:'CardEditCardCtrl',
+        controllerAs:'cardEditCardCtrl'
       })
-      .otherwise({
-        redirectTo: '/'
-      });
+      .state('main.card_list',{
+        url:'/card',
+        templateUrl:'views/card/card_list.html',
+        controller:'CardCardListCtrl',
+        controllerAs:'cardCardListCtrl'
+      })
+
+      ;
+
   });

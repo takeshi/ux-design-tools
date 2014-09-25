@@ -1,0 +1,77 @@
+<div class="container-fluid form-horizontal">
+  
+  <div class="row">
+
+    <div class="col-sm-12">
+        <table class="table">
+          <htead>
+            <tr>
+              <td>Title</td>
+              <td>
+                <input type="text" 
+                  class="form-control" 
+                  ng-model="theme.title"
+                  placeholder="Title" />                
+              </td>
+              <td>
+                <button class="btn btn-default"  ng-click="save()">
+                  <span class="glyphicon glyphicon-save">
+                  </span>                   
+                </button>                  
+              </td>
+            </tr>           
+          </htead>
+          <tbody>
+           <tr>
+              <td rowspan="{{1 + cards.length}}">Card</td>
+              <td>
+                <input type="text" 
+                  class="form-control" 
+                  placeholder="New Entry" 
+                  ng-model="cardEntry"
+                  ng-keyup="addCardKeyUp($event)"
+              />
+            </td>
+            <td>
+              <button ng-click="addCard()" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-plus">
+                </span>
+              </button>
+            </td>
+
+            </tr>            
+            <tr ng-repeat="card in cards track by $index" >
+              <td>
+                <input type="text" 
+                  class="form-control" 
+                  ng-model="card.desc"
+                />
+
+              </td>
+              <td>
+                <button ng-click="removeCard(card)" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-remove">
+                  </span>
+                </button>
+
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      <button class="btn btn-default btn-block" ng-click="save()">
+        <span class="glyphicon glyphicon-save">
+        </span> Save                  
+      </button>
+
+        </div>
+    </div>
+    
+
+  </div>
+  <br />
+
+  </div>  
+
+</div>

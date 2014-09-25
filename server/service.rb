@@ -1,16 +1,4 @@
-class MainApp < Sinatra::Base
 
-  get '/app' do
-    users = []
-    User.each { |user|  
-      users.push user
-    }
-    json users
-  end
+dirname = File.dirname(__FILE__) + "/service"
 
-  get '/app/add' do
-    User.create(name:'Taro',email:'test@test.com')
-    "Add Taro"
-  end
-
-end
+require dirname + '/theme'

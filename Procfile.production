@@ -1,2 +1,2 @@
 ruby: bundle exec rackup -p 9292 -E production
-db: mongod
+# db: mongod
