@@ -1,5 +1,5 @@
 Sequel.migration do
-  up do
+  change do
     create_table :themes do
       primary_key   :id
       String        :title, :null => true
@@ -13,9 +13,4 @@ Sequel.migration do
 
   end
 
-  down do
-    drop_table :themes
-    drop_table :cards
-
-  end
 end

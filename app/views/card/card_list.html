@@ -1,5 +1,15 @@
 <div class="container-fluid form-horizontal">
   
+  <div class="row">
+    <button ng-click="createNewTheme()" class="btn btn-default btn-lng btn-block">
+          <span class="glyphicon glyphicon-plus">
+          </span>
+          New Theme
+    </button>
+  </div>
+
+  <hr />
+
   <div class="row"  ng-show="init">
 
     <div ng-show="themeList.length > 0">
@@ -7,14 +17,20 @@
       <table class="table table-striped ">
         <thead>
           <tr>
-            <td>#</td>
+            <td></td>
             <td>Title</td>
             <td>Card Count</td>
           </tr>
         </thead>
         <tbody>
           <tr ng-repeat="theme in themeList">
-            <td>{{$index + 1}}</td>
+            <td>              
+              <button class="btn btn-default" ng-click="playCardSorting(theme)">
+                <span class="glyphicon glyphicon-play">
+                </span>
+              </button>
+
+            </td>
             <td>
               {{theme.title}}
             </td>
@@ -37,17 +53,6 @@
         </tbody>
       </table>
     </div>
-
-    <hr />
-  </div>
-
-  <div class="row">
-    <button ng-click="createNewTheme()" class="btn btn-default btn-lng btn-block">
-          <span class="glyphicon glyphicon-plus">
-          </span>
-          New Theme
-    </button>
-
 
   </div>
 

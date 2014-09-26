@@ -14,10 +14,10 @@
                   placeholder="Title" />                
               </td>
               <td>
-                <button class="btn btn-default"  ng-click="save()">
+          <!--       <button class="btn btn-default"  ng-click="save()">
                   <span class="glyphicon glyphicon-save">
                   </span>                   
-                </button>                  
+                </button>    -->               
               </td>
             </tr>           
           </htead>
@@ -30,8 +30,9 @@
                   placeholder="New Entry" 
                   ng-model="cardEntry"
                   ng-keyup="addCardKeyUp($event)"
-              />
-            </td>
+                />
+              </td>
+
             <td>
               <button ng-click="addCard()" type="button" class="btn btn-default">
                 <span class="glyphicon glyphicon-plus">

@@ -16,8 +16,14 @@ angular
     'ngSanitize',
     'ngTouch',
     'ui.bootstrap',
-    'ui.router'
+    'ui.router',
+    'ngDragDrop',
+    'akoenig.deckgrid',
+    'xeditable'
   ])
+  .run(function(editableOptions) {
+    editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+  })
   .config(function ($stateProvider,$urlRouterProvider) {
     $urlRouterProvider.otherwise('/card');
 
@@ -32,14 +38,17 @@ angular
       .state('main.edit_card',{
         url:'/card/edit/:themeId',
         templateUrl:'views/card/edit_card.html',
-        controller:'CardEditCardCtrl',
-        controllerAs:'cardEditCardCtrl'
+        controller:'CardEditCardCtrl'
       })
       .state('main.card_list',{
         url:'/card',
         templateUrl:'views/card/card_list.html',
-        controller:'CardCardListCtrl',
-        controllerAs:'cardCardListCtrl'
+        controller:'CardCardListCtrl'
+      }).
+      state('main.card_sorting',{
+        url:'/card/sorting/:themeId',
+        templateUrl:'views/card/card_sorting.html',
+        controller:'CardCardSortingCtrl'
       })
 
       ;

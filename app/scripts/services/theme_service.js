@@ -15,16 +15,18 @@ angular.module('cardsortApp')
     Theme.prototype.create = function(){
       return $http.put('/app/theme');
     };
+    
     Theme.prototype.findAll = function(){
       return $http.get('/app/theme');
-    }
+    };
+
     Theme.prototype.find = function(id){
       return $http.get('/app/theme/' + id);
     };
 
     Theme.prototype.save = function(id,theme){
       theme = JSON.stringify(theme);
-      $log.info("Theme.save",theme);
+      $log.info('Theme.save',theme);
       return $http.post('/app/theme/' + id,theme,{        
       });
     };
@@ -33,5 +35,5 @@ angular.module('cardsortApp')
       return $http.delete('/app/theme/' + id);
     };
 
-    return new Theme;
+    return new Theme();
   });

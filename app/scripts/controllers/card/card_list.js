@@ -20,6 +20,12 @@ angular.module('cardsortApp')
     }
     init();
 
+    $scope.playCardSorting = function(theme){
+      $state.go('main.card_sorting',{
+          themeId:theme.id
+      });
+    };
+
     $scope.selectTheme = function(theme){
       $state.go('main.edit_card',{
           themeId:theme.id
