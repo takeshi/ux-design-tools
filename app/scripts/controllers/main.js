@@ -8,10 +8,7 @@
  * Controller of the cardsortApp
  */
 angular.module('cardsortApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('MainCtrl', function () {
+
+
   });

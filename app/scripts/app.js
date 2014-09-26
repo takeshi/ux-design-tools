@@ -46,7 +46,7 @@ angular
         controller:'CardCardListCtrl'
       }).
       state('main.card_sorting',{
-        url:'/card/sorting/:themeId',
+        url:'/card/sorting/:themeId/:id',
         templateUrl:'views/card/card_sorting.html',
         controller:'CardCardSortingCtrl'
       })

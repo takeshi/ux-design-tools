@@ -1,0 +1,33 @@
+@import "common.scss";
+
+.cardSorting {
+  $height:15em;
+  &_cardArea {
+    @include block;
+
+    width:100%;
+    // height:$height;
+
+  }
+  &_groupArea{
+    @include block;
+    width:100%;
+    min-height:$height;
+    background-color: $default;
+    input{
+      border:none;
+      width:80%;
+      // background-color:$default;
+    }
+  }
+
+  &_group {
+    @include block;
+    width:100%;
+    display:inline-block;
+    background-color:white;
+    // float:left;
+
+  }
+
+}

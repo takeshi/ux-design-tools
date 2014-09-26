@@ -1,0 +1,7 @@
+@import "common.scss";
+
+.card {
+  @include block;
+  width:10em;  
+  display:inline-block;
+}

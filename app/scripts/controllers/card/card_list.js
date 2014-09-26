@@ -8,7 +8,7 @@
  * Controller of the cardsortApp
  */
 angular.module('cardsortApp')
-  .controller('CardCardListCtrl', function ($scope,$log,themeService,$state) {
+  .controller('CardCardListCtrl', function ($scope,$log,themeService,cardsortingService,$state) {
 
     function init(){    
       themeService.findAll()
@@ -21,11 +21,20 @@ angular.module('cardsortApp')
     init();
 
     $scope.playCardSorting = function(theme){
-      $state.go('main.card_sorting',{
-          themeId:theme.id
+      cardsortingService.create(theme.id)
+      .success(function(data){
+        $state.go('main.card_sorting',{
+            themeId:theme.id,
+            id:data.id
+        });
       });
     };
-
+    $scope.toSorting = function(theme,sorting){
+      $state.go('main.card_sorting',{
+          themeId:theme.id,
+          id:sorting.id
+      });
+    };
     $scope.selectTheme = function(theme){
       $state.go('main.edit_card',{
           themeId:theme.id

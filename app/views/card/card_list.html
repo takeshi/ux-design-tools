@@ -23,7 +23,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="theme in themeList">
+          <tr ng-repeat-start="theme in themeList">
             <td>              
               <button class="btn btn-default" ng-click="playCardSorting(theme)">
                 <span class="glyphicon glyphicon-play">
@@ -48,6 +48,13 @@
                 <span class="glyphicon glyphicon-remove">
                 </span>
               </button>
+            </td>
+          </tr>
+          <tr ng-repeat-end>
+            <td colspan="4">
+              <span ng-click="toSorting(theme,cardsorting)" class="card" ng-repeat="cardsorting in theme.cardsortings">
+                {{cardsorting.userId||'No Name'}}
+              </span>
             </td>
           </tr>
         </tbody>

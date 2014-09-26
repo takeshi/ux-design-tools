@@ -17,5 +17,3 @@ require dirname + '/group'
 require dirname + '/cardsorting'
 require dirname + '/cardsorting_card_and_group'
 require dirname + '/unselected_card'
-
-

@@ -7,7 +7,8 @@ class MainApp < Sinatra::Base
       tmp = {
         id:it.id,
         title:it.title,
-        cards:it.cards
+        cards:it.cards,
+        cardsortings:it.cardsortings
       }
       list.push tmp
     }
@@ -19,7 +20,8 @@ class MainApp < Sinatra::Base
     tmp =  {
       id:theme.id,
       title:theme.title,
-      cards:theme.cards
+      cards:theme.cards,
+      cardsortings:theme.cardsortings
     }
     json tmp
   end
@@ -36,7 +38,13 @@ class MainApp < Sinatra::Base
         exsist = reqTheme["cards"].any? do |c|
             card.id == c["id"]
           end
-        card.delete unless exsist
+
+        unless exsist
+          UnselectedCard.where(:card_id=>card.id).delete
+          CardsortingCardAndGroup.where(:card_id=>card.id).delete
+          card.delete
+        end
+
       end
 
       reqTheme["cards"].each do |card|
@@ -61,9 +69,23 @@ class MainApp < Sinatra::Base
   delete '/app/theme/:themId' do
     DB.transaction do
       theme = Theme[params[:themId]]
+      theme.cardsortings.each do |c| 
+        c.cardsortingCardAndGroups.each do |c|
+          c.delete 
+        end
+        c.unselectedCards.each do |c|
+          c.delete 
+        end
+        c.delete 
+      end
+
       theme.cards.each do |c| 
         c.delete 
       end
+      theme.groups.each do |c| 
+        c.delete 
+      end
+
       theme.delete
     end
     json "delete success"

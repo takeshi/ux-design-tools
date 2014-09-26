@@ -1,0 +1,10 @@
+@import "common/colors.scss";
+
+@mixin block {
+  border: solid thin !important;
+  border-color: $default !important;
+  color:black !important;
+  border-radius: .2em;
+  margin: 0.3em 0.3em 0.3em 0.3em;
+  padding: 0.3em 0.3em 0.3em 0.3em;
+}
