@@ -1,20 +1,22 @@
 <div class="container-fluid">
 <div class="row">
 <div>
-  <div class="input-group">
-    <span class="input-group-addon">名前</span>
-    <input ng-model="userId" type="text" class="form-control" placeholder="Email アドレス等を入力してください">
-  </div>
 
-  <hr />
   <div>
     <h4>{{theme.title}}</h4>
   </div>
   <hr />
+
+  <div class="input-group">
+    <span class="input-group-addon">Your Name</span>
+    <input ng-model="userId" type="text" class="form-control" placeholder="Email アドレス等を入力してください">
+  </div>
+
+  <hr />
   <div class="col-sm-12 cardSorting_groupArea" 
           ui-on-drop="dropCard($event,$data)"
           >
-            <span ng-show="groups.length == 0">Add Card Here</span>
+            <span ng-show="groups.length == 0">グループを追加する(カードをここにドラッグする)</span>
 
 <!--          <div deckgrid source="groups" cardTemplate="views/card/group_card.html" class="deckgrid"></div>
  -->
@@ -42,7 +44,7 @@
           class="card"
           ng-repeat="card in group.cards track by $index"
           ng-bind="card.desc"
-          editable-text="card.desc"
+          editable-textarea="card.desc"
           ui-draggable="true" drag="card" 
           on-drop-success="dropSccess(group.cards,$index)"
         >
@@ -55,7 +57,7 @@
     
     <div>
       <a 
-       editable-text="card.desc"
+       editable-textarea="card.desc"
        class="card" 
        ng-repeat="card in unselectedCards"
        ui-draggable="true" drag="card" 
@@ -64,18 +66,18 @@
         {{card.desc}}
       </a>
     </div>
-    <hr ng-if="unselectedCard.length > 0" />
+    <hr ng-if="unselectedCards.length > 0" />
     <input 
       class="form-control" 
       type="text" 
       style="width:80%;display:inline-block;"
       ng-model="newCard"
-      placeholder="カードを追加します"
+      placeholder="カード追加"
     />
     <button ng-click="addCard()" 
       type="button" class="btn btn-default">
         <span class="glyphicon glyphicon-plus">
-        </span>
+        </span>カード追加
     </button>
 
       <hr />
@@ -84,20 +86,20 @@
            ng-click="sendResult()"
         >
           <span class="glyphicon glyphicon-send">
-          </span> 送信
+          </span> 保存
       </button>
 
-      <button  class="btn btn-default"
+      <span  class="btn btn-default"
            ui-on-drop="doNothing()"
         >
           <span class="glyphicon glyphicon-trash">
-          </span> カードの削除
-      </button>
+          </span> カードの削除(ここにカードをドラッグする)
+      </span>
       <hr />
       <button ng-click="delete()" 
       type="button" class="btn btn-default">
         <span class="glyphicon glyphicon-remove">
-        </span>このカードソティングを削除
+        </span>このカードソティングを削除する
     </button>
 
   </div>

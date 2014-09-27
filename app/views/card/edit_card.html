@@ -25,37 +25,36 @@
            <tr>
               <td rowspan="{{1 + cards.length}}">Card</td>
               <td>
-                <input type="text" 
+                <textarea type="text" 
                   class="form-control" 
-                  placeholder="New Entry" 
+                  placeholder="カードの追加(Shift-Eenter)" 
                   ng-model="cardEntry"
                   ng-keyup="addCardKeyUp($event)"
-                />
+                >
+                </textarea>
               </td>
 
             <td>
               <button ng-click="addCard()" type="button" class="btn btn-default">
                 <span class="glyphicon glyphicon-plus">
-                </span>
+                </span>追加
               </button>
             </td>
 
             </tr>            
             <tr ng-repeat="card in cards track by $index" >
               <td>
-                <input type="text" 
+                <textarea type="text" 
                   class="form-control" 
                   ng-model="card.desc"
-                />
+                ></textarea>
 
               </td>
               <td>
                 <button ng-click="removeCard(card)" type="button" class="btn btn-default">
                   <span class="glyphicon glyphicon-remove">
-                  </span>
+                  </span>削除
                 </button>
-
-
               </td>
             </tr>
           </tbody>
@@ -63,7 +62,7 @@
 
       <button class="btn btn-default btn-block" ng-click="save()">
         <span class="glyphicon glyphicon-save">
-        </span> Save                  
+        </span>保存                  
       </button>
 
         </div>

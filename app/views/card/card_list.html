@@ -4,7 +4,7 @@
     <button ng-click="createNewTheme()" class="btn btn-default btn-lng pull-right">
           <span class="glyphicon glyphicon-plus">
           </span>
-          New Theme
+          新しいテーマ
     </button>
   </div>
 
@@ -29,7 +29,7 @@
 
               >
                 <span class="glyphicon glyphicon-play">
-                </span>開始
+                </span>開始      
               </button>
 
             </td>
@@ -54,7 +54,7 @@
           </tr>
           <tr ng-repeat-end>
             <td colspan="4">
-              <h5>カードソーティングの結果 </h5>
+              <h5>カードソーティング結果 </h5>
               <span ng-click="toSorting(theme,cardsorting)" class="card" ng-repeat="cardsorting in theme.cardsortings">
                 {{cardsorting.userId||'No Name'}}
               </span>

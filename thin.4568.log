@@ -1,0 +1,65 @@
+Writing PID to ./thin.4568.pid
+Changing process privilege to root:root
+Exiting!
+/Users/takeshi/.rvm/gems/ruby-2.0.0-p451/gems/thin-1.6.2/lib/thin/daemonizing.rb:71:in `getgrnam': can't find group for root (ArgumentError)
+	from /Users/takeshi/.rvm/gems/ruby-2.0.0-p451/gems/thin-1.6.2/lib/thin/daemonizing.rb:71:in `change_privilege'
+	from /Users/takeshi/.rvm/gems/ruby-2.0.0-p451/gems/thin-1.6.2/lib/thin/controllers/controller.rb:67:in `start'
+	from /Users/takeshi/.rvm/gems/ruby-2.0.0-p451/gems/thin-1.6.2/lib/thin/runner.rb:199:in `run_command'
+	from /Users/takeshi/.rvm/gems/ruby-2.0.0-p451/gems/thin-1.6.2/lib/thin/runner.rb:155:in `run!'
+	from /Users/takeshi/.rvm/gems/ruby-2.0.0-p451/gems/thin-1.6.2/bin/thin:6:in `<top (required)>'
+	from /Users/takeshi/.rvm/gems/ruby-2.0.0-p451/bin/thin:23:in `load'
+	from /Users/takeshi/.rvm/gems/ruby-2.0.0-p451/bin/thin:23:in `<main>'
+	from /Users/takeshi/.rvm/gems/ruby-2.0.0-p451/bin/ruby_executable_hooks:15:in `eval'
+	from /Users/takeshi/.rvm/gems/ruby-2.0.0-p451/bin/ruby_executable_hooks:15:in `<main>'
+Writing PID to ./thin.4568.pid
+Changing process privilege to takeshi:takeshi
+Exiting!
+/Users/takeshi/.rvm/gems/ruby-2.0.0-p451/gems/thin-1.6.2/lib/thin/daemonizing.rb:71:in `getgrnam': can't find group for takeshi (ArgumentError)
+	from /Users/takeshi/.rvm/gems/ruby-2.0.0-p451/gems/thin-1.6.2/lib/thin/daemonizing.rb:71:in `change_privilege'
+	from /Users/takeshi/.rvm/gems/ruby-2.0.0-p451/gems/thin-1.6.2/lib/thin/controllers/controller.rb:67:in `start'
+	from /Users/takeshi/.rvm/gems/ruby-2.0.0-p451/gems/thin-1.6.2/lib/thin/runner.rb:199:in `run_command'
+	from /Users/takeshi/.rvm/gems/ruby-2.0.0-p451/gems/thin-1.6.2/lib/thin/runner.rb:155:in `run!'
+	from /Users/takeshi/.rvm/gems/ruby-2.0.0-p451/gems/thin-1.6.2/bin/thin:6:in `<top (required)>'
+	from /Users/takeshi/.rvm/gems/ruby-2.0.0-p451/bin/thin:23:in `load'
+	from /Users/takeshi/.rvm/gems/ruby-2.0.0-p451/bin/thin:23:in `<main>'
+	from /Users/takeshi/.rvm/gems/ruby-2.0.0-p451/bin/ruby_executable_hooks:15:in `eval'
+	from /Users/takeshi/.rvm/gems/ruby-2.0.0-p451/bin/ruby_executable_hooks:15:in `<main>'
+Writing PID to ./thin.4568.pid
+I, [2014-09-27T15:21:28.658566 #27463]  INFO -- : (0.000234s) PRAGMA foreign_keys = 1
+I, [2014-09-27T15:21:28.658768 #27463]  INFO -- : (0.000024s) PRAGMA case_sensitive_like = 1
+I, [2014-09-27T15:21:28.659365 #27463]  INFO -- : (0.000473s) PRAGMA table_info('themes')
+I, [2014-09-27T15:21:28.661163 #27463]  INFO -- : (0.000117s) PRAGMA table_info('cards')
+I, [2014-09-27T15:21:28.672862 #27463]  INFO -- : (0.000161s) PRAGMA table_info('groups')
+I, [2014-09-27T15:21:28.674319 #27463]  INFO -- : (0.000110s) PRAGMA table_info('cardsortings')
+I, [2014-09-27T15:21:28.676095 #27463]  INFO -- : (0.000127s) PRAGMA table_info('cardsorting_card_and_groups')
+I, [2014-09-27T15:21:28.677379 #27463]  INFO -- : (0.000112s) PRAGMA table_info('unselected_cards')
+Thin web server (v1.6.2 codename Doc Brown)
+Maximum connections set to 1024
+Listening on 127.0.0.1:4568, CTRL+C to stop
+Exiting!
+Writing PID to ./thin.4568.pid
+I, [2014-09-27T15:23:02.913261 #27477]  INFO -- : (0.000222s) PRAGMA foreign_keys = 1
+I, [2014-09-27T15:23:02.913451 #27477]  INFO -- : (0.000022s) PRAGMA case_sensitive_like = 1
+I, [2014-09-27T15:23:02.914005 #27477]  INFO -- : (0.000437s) PRAGMA table_info('themes')
+I, [2014-09-27T15:23:02.915842 #27477]  INFO -- : (0.000129s) PRAGMA table_info('cards')
+I, [2014-09-27T15:23:02.927665 #27477]  INFO -- : (0.000170s) PRAGMA table_info('groups')
+I, [2014-09-27T15:23:02.929162 #27477]  INFO -- : (0.000124s) PRAGMA table_info('cardsortings')
+I, [2014-09-27T15:23:02.930831 #27477]  INFO -- : (0.000112s) PRAGMA table_info('cardsorting_card_and_groups')
+I, [2014-09-27T15:23:02.932032 #27477]  INFO -- : (0.000109s) PRAGMA table_info('unselected_cards')
+Thin web server (v1.6.2 codename Doc Brown)
+Maximum connections set to 1024
+Listening on 127.0.0.1:4568, CTRL+C to stop
+Exiting!
+Writing PID to ./thin.4568.pid
+I, [2014-09-27T15:24:26.978564 #27491]  INFO -- : (0.000280s) PRAGMA foreign_keys = 1
+I, [2014-09-27T15:24:26.978772 #27491]  INFO -- : (0.000025s) PRAGMA case_sensitive_like = 1
+I, [2014-09-27T15:24:26.979375 #27491]  INFO -- : (0.000466s) PRAGMA table_info('themes')
+I, [2014-09-27T15:24:26.981217 #27491]  INFO -- : (0.000142s) PRAGMA table_info('cards')
+I, [2014-09-27T15:24:26.993006 #27491]  INFO -- : (0.000152s) PRAGMA table_info('groups')
+I, [2014-09-27T15:24:26.994488 #27491]  INFO -- : (0.000111s) PRAGMA table_info('cardsortings')
+I, [2014-09-27T15:24:26.996223 #27491]  INFO -- : (0.000119s) PRAGMA table_info('cardsorting_card_and_groups')
+I, [2014-09-27T15:24:26.997495 #27491]  INFO -- : (0.000111s) PRAGMA table_info('unselected_cards')
+Thin web server (v1.6.2 codename Doc Brown)
+Maximum connections set to 1024
+Listening on 0.0.0.0:4568, CTRL+C to stop
+Exiting!

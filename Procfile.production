@@ -1,2 +1,1 @@
-ruby: bundle exec rackup -p 9292 -E production
-# db: mongod
+ruby: bundle exec thin -s 2 -C config.yml -R config.ru start
