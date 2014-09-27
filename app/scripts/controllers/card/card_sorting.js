@@ -23,6 +23,8 @@ angular.module('cardsortApp')
     $scope.groups = [];
     $scope.unselectedCards = [];
 
+    $scope.showCards = true;
+
     function removeCard(card){
       var array = $scope.unselectedCards;
       var index = -1;
