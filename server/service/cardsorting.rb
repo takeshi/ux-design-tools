@@ -66,9 +66,13 @@ class MainApp < Sinatra::Base
         end
       end 
       results.sort! do |a,b|
+        return -1 unless a[:group].title
+        return 1 unless b[:group].title
         a[:group].title <=> b[:group].title
       end
       cards = theme.cards.sort do |a,b|
+        return -1 unless a.desc
+        return 1 unless b.desc
         a.desc <=> b.desc
       end
       data = {
