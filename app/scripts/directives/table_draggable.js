@@ -1,6 +1,11 @@
-var project = angular.module("tableDragtable", []);
-
-project.directive('tableDragtable', function($window, $document, $parse,$timeout) {
+/**
+ * @ngdoc directive
+ * @name cardsortApp.directive:tableDragtable
+ * @description
+ * # tableDragtable
+ */
+angular.module('cardsortApp')
+  .directive('tableDragtable', function($window, $document, $parse,$timeout) {
     return function(scope, elem, attrs) {
         scope.table = elem[0];
         scope.order = [];
@@ -94,8 +99,8 @@ project.directive('tableDragtable', function($window, $document, $parse,$timeout
             scope.elNode.style.zIndex = ++scope.zIndex;
 
             // Add listeners for movement
-            startX = event.screenX - x;
-            startY = event.screenY - y;
+            // startX = event.screenX - x;
+            // startY = event.screenY - y;
             $document.bind('mousemove', dragMove);
             $document.bind('mouseup', dragEnd);
         }

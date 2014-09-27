@@ -19,7 +19,6 @@ angular
     'ui.router',
     'ngDragDrop',
     'xeditable',
-    'tableDragtable',
     'scrollable-table'
   ])
   .run(function(editableOptions) {
