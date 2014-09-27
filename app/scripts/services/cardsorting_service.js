@@ -26,5 +26,10 @@ angular.module('cardsortApp')
       return $http.put('/app/cardsorting/'+themeId);
     };
 
+    CardsortingService.prototype.delete = function(themeId,cardsortingId){
+      return $http.delete('/app/cardsorting/' +
+       themeId + '/' + cardsortingId );
+    };
+
     return new CardsortingService();
   });

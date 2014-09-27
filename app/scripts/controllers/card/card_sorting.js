@@ -101,4 +101,14 @@ angular.module('cardsortApp')
       });
     };
     
+    $scope.delete = function(){
+      var groups = $scope.groups;
+      cardsortingService.delete(
+        themeId,
+        id)
+        .success(function(){
+        $state.go('main.card_list');
+      });
+    };
+
   });

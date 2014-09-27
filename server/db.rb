@@ -4,9 +4,9 @@ require 'logger'
 DB = Sequel.connect('sqlite://cardsort.db')
 Sequel::Model.plugin :json_serializer
 
-# configure :development do 
+configure :development do 
   DB.loggers << Logger.new($stdout)
-# end
+end
 
 dirname = File.dirname(__FILE__) + "/db"
 

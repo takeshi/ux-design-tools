@@ -1,7 +1,7 @@
 <div class="container-fluid form-horizontal">
   
   <div class="row">
-    <button ng-click="createNewTheme()" class="btn btn-default btn-lng btn-block">
+    <button ng-click="createNewTheme()" class="btn btn-default btn-lng pull-right">
           <span class="glyphicon glyphicon-plus">
           </span>
           New Theme
@@ -13,21 +13,23 @@
   <div class="row"  ng-show="init">
 
     <div ng-show="themeList.length > 0">
-      <h4>Theme List</h4>
-      <table class="table table-striped ">
+      <h4>テーマ</h4>
+      <table class="table">
         <thead>
           <tr>
             <td></td>
-            <td>Title</td>
-            <td>Card Count</td>
+            <td>タイトル</td>
+            <td>カード数</td>
           </tr>
         </thead>
         <tbody>
           <tr ng-repeat-start="theme in themeList">
-            <td>              
-              <button class="btn btn-default" ng-click="playCardSorting(theme)">
+            <td rowspan="2" style="text-align:center;vertical-align: middle;" >              
+              <button class="btn btn-default" ng-click="playCardSorting(theme)"
+
+              >
                 <span class="glyphicon glyphicon-play">
-                </span>
+                </span>開始
               </button>
 
             </td>
@@ -37,23 +39,27 @@
             <td>
               {{theme.cards.length || 0}}
             </td>
-            <td style="width:105px;">
+            <td style="width:170px;">
               <button class="btn btn-default" ng-click="selectTheme(theme)">
-                <span class="glyphicon glyphicon-edit">
+                <span class="glyphicon glyphicon-edit">編集
                 </span>
               </button>
               <button class="btn btn-default"
                 ng-click="deleteTheme(theme)"
                 >
-                <span class="glyphicon glyphicon-remove">
+                <span class="glyphicon glyphicon-remove">削除
                 </span>
               </button>
             </td>
           </tr>
           <tr ng-repeat-end>
             <td colspan="4">
+              <h5>カードソーティングの結果 </h5>
               <span ng-click="toSorting(theme,cardsorting)" class="card" ng-repeat="cardsorting in theme.cardsortings">
                 {{cardsorting.userId||'No Name'}}
+              </span>
+              <span ng-show="theme.cardsortings.length == 0">
+                なし
               </span>
             </td>
           </tr>

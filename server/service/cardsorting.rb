@@ -36,7 +36,13 @@ class MainApp < Sinatra::Base
 
   get '/app/cardsorting/:themeId/:id' do
     # json getDetail(Cardsorting.where(:theme_id=>params[:themeId],:id=>params[:id]).first)
-    json getDetail Cardsorting.where(:theme_id=>params[:themeId],:id=>params[:id]).first
+    cardSorting = Cardsorting.where(:theme_id=>params[:themeId],:id=>params[:id]).first
+    unless cardSorting
+      status 404
+      'NotFound'
+    else
+      json getDetail cardSorting
+    end
   end
 
 
@@ -72,6 +78,25 @@ class MainApp < Sinatra::Base
     end
   end
 
+  delete '/app/cardsorting/:themeId/:id' do
+    DB.transaction do
+      theme = Theme[params[:themeId]]
+      unless theme 
+        send 404
+        return
+      end
+      cardsorting = Cardsorting[params[:id]]
+      unless cardsorting 
+        send 404
+        return
+      end
+      CardsortingCardAndGroup.where(:cardsorting_id=>cardsorting.id).delete
+      UnselectedCard.where(:cardsorting_id=>cardsorting.id).delete
+      cardsorting.delete
+    end
+    json 'success'
+  end 
+
   post '/app/cardsorting/:themeId/:id' do
     DB.transaction do
       jsonBody = request.body.read;
@@ -98,8 +123,11 @@ class MainApp < Sinatra::Base
       reqCardsorting["groups"].each do |reqGroup|
         group = Group[reqGroup["id"]]
         unless group
-          group = Group.new
-          group.theme = theme
+          group = Group.where(:theme_id=>theme.id,:title=>reqGroup["title"]).first
+          unless group
+            group = Group.new
+            group.theme = theme
+          end
         end
         group.title = reqGroup["title"]
         group.save
@@ -108,34 +136,49 @@ class MainApp < Sinatra::Base
         reqGroup["cards"].each do |reqCard|
           card = Card[reqCard["id"]]
           unless card
-            card = Card.new
-            card.theme = theme
+            card = Card.where(:theme_id=>theme.id,:desc=>reqCard["desc"]).first
+            unless card
+              card = Card.new
+              card.theme = theme
+            end
           end
           card.desc = reqCard["desc"]
           card.save
           
-          mapping = CardsortingCardAndGroup.new
-          mapping.group = group
-          mapping.card = card
-          mapping.cardsorting = cardsorting
-          mapping.save
+          # 重複の削除          
+          mapping = CardsortingCardAndGroup.where(
+            :group_id=>group.id,
+            :card_id=>card.id,
+            :cardsorting_id=>cardsorting.id)
+            .first
+          unless mapping
+            mapping = CardsortingCardAndGroup.new
+            mapping.group = group
+            mapping.card = card
+            mapping.cardsorting = cardsorting
+            mapping.save
+          end
         end
+      end
 
-        reqCardsorting["unselectedCards"].each do |reqUnselectedCard|
-          card = Card[reqUnselectedCard["id"]]
+      logger.info "unselected card #{reqCardsorting["unselectedCards"]}"
+      reqCardsorting["unselectedCards"].each do |reqUnselectedCard|
+        card = Card[reqUnselectedCard["id"]]
+        unless card
+          card = Card.where(:theme_id=>theme.id,:desc=>reqUnselectedCard["desc"]).first
           unless card
             card = Card.new
             card.theme = theme
-          end
-          card.desc = reqUnselectedCard["desc"]
-          card.save
-          unselectedCard = UnselectedCard.new
-          unselectedCard.card = card;
-          unselectedCard.cardsorting = cardsorting
-          unselectedCard.save
+          end            
         end
-
+        card.desc = reqUnselectedCard["desc"]
+        card.save
+        unselectedCard = UnselectedCard.new
+        unselectedCard.card = card;
+        unselectedCard.cardsorting = cardsorting
+        unselectedCard.save
       end
+
       json cardsorting
     end
   end
