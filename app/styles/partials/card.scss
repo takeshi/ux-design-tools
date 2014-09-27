@@ -2,8 +2,19 @@
 
 .card {
   @include block;
+  width:20em;
+  height:100px !important;  
+
+  display:inline-block;
+  overflow-x: hidden;
+  overflow-y: auto;  
+}
+
+.card2 {
+  @include block;
   width:95%;  
   display:inline-block;
-  height:100px !important;
-  overflow-x: scroll;
+  height:100px !important;  
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
