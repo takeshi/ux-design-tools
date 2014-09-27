@@ -34,6 +34,52 @@ class MainApp < Sinatra::Base
     detail
   end
 
+  get '/app/cardsorting_analize/:themeId' do
+    cardSortings = Cardsorting.where(:theme_id=>params[:themeId])
+    if cardSortings.count == 0
+      status 404
+      'Not Found'
+    else
+      theme = Theme[params[:themeId]]
+      results = [];
+
+      cardSortings.each do |cardSorting|
+        userId = cardSorting.userId
+        cardSorting.cardsortingCardAndGroups.each do |cag|
+          group = cag.group;
+          card = cag.card;
+          result = results.find{|e| e[:group].id == group.id}
+          unless result
+            result = {
+              group:group,
+              votes:{}
+            };
+            results << result
+          end
+          vote = result[:votes][card.id];
+          unless vote
+            vote = []
+            result[:votes][card.id] = vote
+          end
+          # logger.info "#{json results}"
+          vote << userId
+        end
+      end 
+      results.sort! do |a,b|
+        a[:group].title <=> b[:group].title
+      end
+      cards = theme.cards.sort do |a,b|
+        a.desc <=> b.desc
+      end
+      data = {
+        theme:theme,
+        cards:cards,
+        results:results
+      }
+      json data
+    end
+  end
+
   get '/app/cardsorting/:themeId/:id' do
     # json getDetail(Cardsorting.where(:theme_id=>params[:themeId],:id=>params[:id]).first)
     cardSorting = Cardsorting.where(:theme_id=>params[:themeId],:id=>params[:id]).first
@@ -44,7 +90,6 @@ class MainApp < Sinatra::Base
       json getDetail cardSorting
     end
   end
-
 
   get '/app/cardsorting/:themeId' do
     list = []
@@ -121,9 +166,9 @@ class MainApp < Sinatra::Base
       UnselectedCard.where(:cardsorting_id=>cardsorting.id).delete
 
       reqCardsorting["groups"].each do |reqGroup|
-        group = Group[reqGroup["id"]]
+        group = Group.where(:theme_id=>theme.id,:title=>reqGroup["title"]).first
         unless group
-          group = Group.where(:theme_id=>theme.id,:title=>reqGroup["title"]).first
+          group = Group[reqGroup["id"]]
           unless group
             group = Group.new
             group.theme = theme
@@ -134,9 +179,9 @@ class MainApp < Sinatra::Base
 
 
         reqGroup["cards"].each do |reqCard|
-          card = Card[reqCard["id"]]
+          card = Card.where(:theme_id=>theme.id,:desc=>reqCard["desc"]).first
           unless card
-            card = Card.where(:theme_id=>theme.id,:desc=>reqCard["desc"]).first
+            card = Card[reqCard["id"]]
             unless card
               card = Card.new
               card.theme = theme
@@ -161,7 +206,7 @@ class MainApp < Sinatra::Base
         end
       end
 
-      logger.info "unselected card #{reqCardsorting["unselectedCards"]}"
+     # logger.info "unselected card #{reqCardsorting["unselectedCards"]}"
       reqCardsorting["unselectedCards"].each do |reqUnselectedCard|
         card = Card[reqUnselectedCard["id"]]
         unless card

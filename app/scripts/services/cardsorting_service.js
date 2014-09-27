@@ -31,5 +31,11 @@ angular.module('cardsortApp')
        themeId + '/' + cardsortingId );
     };
 
+
+    CardsortingService.prototype.getAnalize = function(themeId){
+      return $http.get('/app/cardsorting_analize/' +
+       themeId);
+    };
+
     return new CardsortingService();
   });

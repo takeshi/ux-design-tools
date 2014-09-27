@@ -14,8 +14,8 @@
     "angular-ui-router": "~0.2.11",
     "angular-bootstrap": "~0.11.0",
     "angular-dragdrop": "ganarajpr/angular-dragdrop#~1.0.1",
-    "angular-deckgrid": "~0.4.4",
-    "angular-xeditable": "~0.1.8"
+    "angular-xeditable": "~0.1.8",
+    "TableDnD": "*"
   },
   "devDependencies": {
     "angular-mocks": "1.2.16",

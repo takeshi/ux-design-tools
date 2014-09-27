@@ -18,8 +18,8 @@ angular
     'ui.bootstrap',
     'ui.router',
     'ngDragDrop',
-    'akoenig.deckgrid',
-    'xeditable'
+    'xeditable',
+    'tableDragtable'
   ])
   .run(function(editableOptions) {
     editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
@@ -50,7 +50,11 @@ angular
         templateUrl:'views/card/card_sorting.html',
         controller:'CardCardSortingCtrl'
       })
-
+      .state('main.analize',{
+        url:'/card/analize/:themeId',
+        templateUrl:'views/card/analize.html',
+        controller:'CardAnalizeCtrl'
+      })
       ;
 
   });
