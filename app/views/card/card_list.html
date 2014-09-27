@@ -61,7 +61,7 @@
             <td colspan="4">
               <h5>カードソーティング結果 
               </h5>
-              <span ng-click="toSorting(theme,cardsorting)" class="card" ng-repeat="cardsorting in theme.cardsortings">
+              <span ng-click="toSorting(theme,cardsorting)" class="btn btn-default" ng-repeat="cardsorting in theme.cardsortings">
                 {{cardsorting.userId||'No Name'}}
               </span>
               <span ng-show="theme.cardsortings.length == 0">
