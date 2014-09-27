@@ -20,7 +20,7 @@ angular.module('cardsortApp')
                 headers[i].onmousedown = dragStart;
             }
 
-        },200);
+        },2000);
 
         function dragStart(event) {
             // Prevent default dragging of selected content

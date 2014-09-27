@@ -13,7 +13,7 @@ angular.module('cardsortApp')
       link: function postLink(scope, element, attrs) {
         $timeout(function(){
           $(element).tableDnD();
-        },200);
+        },2000);
       }
     };
   });
