@@ -39,16 +39,17 @@
           style="width:80%"
         />
         <hr />
-
-        <a 
-          class="card2"
-          ng-repeat="card in group.cards track by $index"
-          ng-bind="card.desc"
-          editable-textarea="card.desc"
-          ui-draggable="true" drag="card" 
-          on-drop-success="dropSccess(group.cards,$index)"
-        >
-        </a>
+        <div class="cardSorting_group_cards">
+          <a 
+            class="card2"
+            ng-repeat="card in group.cards track by $index"
+            ng-bind="card.desc"
+            editable-textarea="card.desc"
+            ui-draggable="true" drag="card" 
+            on-drop-success="dropSccess(group.cards,$index)"
+          >
+          </a>
+        </div>
     </div>
   </div>
 

@@ -1,21 +1,23 @@
 <div>
   <h4>{{data.theme.title}}</h4>
-  <div style="width:{{(data.cards.length + 2 )* 100}}px; overflow:scroll;">
+  <div style="width:{{(data.cards.length + 2 )* 150}}px; overflow:scroll;">
+
+  <scrollable-table watch="data.results">
 
   <table tablednd table-dragtable class="table table-striped table-bordered"
     cellspacing="0" cellpadding="1"
     >
     <thead>
       <tr>
-        <td style="width:100px" col="facility">Group/Card</td>
-        <td style="width:100px"ng-repeat="card in data.cards">{{card.desc}}</td>
+        <td sortable-header col="group.title" style="width:150px">Group/Card</td>
+        <td style="width:150px" ng-repeat="card in data.cards">{{card.desc}}</td>
       </tr>
     </thead>
 
     <tbody>
       <tr ng-repeat="result in data.results">
-        <td style="width:100px">{{result.group.title}}</td>
-        <td style="width:100px" ng-repeat="card in data.cards">
+        <td style="width:150px">{{result.group.title}}</td>
+        <td style="width:150px" ng-repeat="card in data.cards">
           <span class="btn btn-default" ng-repeat="vote in result.votes[card.id]">
             {{vote}}
           </span>
@@ -24,6 +26,6 @@
       </tr>
     </tbody>
   </table>
-
+  </scrollable-table>
   </div>
 </div>

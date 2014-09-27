@@ -15,7 +15,7 @@ angular.module('cardsortApp')
         var i;
         $timeout(function(){
 
-            for (i = 0; i < headers.length; i++) {
+            for (i = 1; i < headers.length; i++) {
                 scope.order.push(i);
                 headers[i].onmousedown = dragStart;
             }

@@ -26,11 +26,17 @@
     width:100%;
     display:inline-block;
     background-color:white;
-    height:450px;
-    overflow-x: hidden;
-    overflow-y: scroll;
+    // overflow-x: hidden;
+    // overflow-y: scroll;
     // float:left;
-
+    &_cards {
+      width:100%;
+      // display:inline-block;
+      // background-color:white;
+      height:330px;
+      overflow-x: hidden;
+      overflow-y: scroll;      
+    }
   }
 
 }
