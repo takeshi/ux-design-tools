@@ -36,7 +36,10 @@
                 <span class="glyphicon glyphicon-th">
                 </span> Analize
               </button>
-
+              <button class="btn btn-default" ng-click="selectTheme(theme)">
+                <span class="glyphicon glyphicon-edit">Edit
+                </span>
+              </button>
             </td>
             <td>
               {{theme.title}}
@@ -45,14 +48,10 @@
               {{theme.cards.length || 0}}
             </td>
             <td style="width:170px;">
-              <button class="btn btn-default" ng-click="selectTheme(theme)">
-                <span class="glyphicon glyphicon-edit">編集
-                </span>
-              </button>
               <button class="btn btn-default"
                 ng-click="deleteTheme(theme)"
                 >
-                <span class="glyphicon glyphicon-remove">削除
+                <span class="glyphicon glyphicon-remove">Delete
                 </span>
               </button>
             </td>
