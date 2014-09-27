@@ -20,7 +20,7 @@
 
 <!--          <div deckgrid source="groups" cardTemplate="views/card/group_card.html" class="deckgrid"></div>
  -->
-  <div ng-repeat="group in groups" class="col-sm-6">
+  <div ng-repeat="group in groups" class="col-sm-3">
         <div
         class="cardSorting_group"
         ui-on-drop="dropCardToGroup($event,group,$data)"        
@@ -51,6 +51,7 @@
         </a>
     </div>
   </div>
+
   </div>
 
   <div class="col-sm-12 cardSorting_cardArea form-horizontal">

@@ -2,6 +2,8 @@
 
 .card {
   @include block;
-  width:10em;  
+  width:95%;  
   display:inline-block;
+  height:100px !important;
+  overflow: scroll;
 }
