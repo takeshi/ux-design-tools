@@ -170,7 +170,8 @@ class MainApp < Sinatra::Base
       UnselectedCard.where(:cardsorting_id=>cardsorting.id).delete
 
       reqCardsorting["groups"].each do |reqGroup|
-        group = Group.where(:theme_id=>theme.id,:title=>reqGroup["title"]).first
+        title = reqGroup["title"] || '(未分類)';
+        group = Group.where(:theme_id=>theme.id,:title=>title).first
         unless group
           group = Group[reqGroup["id"]]
           unless group
@@ -178,12 +179,16 @@ class MainApp < Sinatra::Base
             group.theme = theme
           end
         end
-        group.title = reqGroup["title"]
+        group.title = title
         group.save
 
 
         reqGroup["cards"].each do |reqCard|
-          card = Card.where(:theme_id=>theme.id,:desc=>reqCard["desc"]).first
+          desc = reqCard["desc"];
+          unless desc
+            next
+          end
+          card = Card.where(:theme_id=>theme.id,:desc=>desc).first
           unless card
             card = Card[reqCard["id"]]
             unless card
@@ -191,7 +196,7 @@ class MainApp < Sinatra::Base
               card.theme = theme
             end
           end
-          card.desc = reqCard["desc"]
+          card.desc = desc
           card.save
           
           # 重複の削除          
