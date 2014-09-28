@@ -71,9 +71,14 @@ class MainApp < Sinatra::Base
       size = cards.length
       tableData = []
       results.each do |result|
-        tableData << result[:votes].keys
+        tableData << result[:votes].keys.map do|key|
+          cards.index do |e|
+            e.id == key
+          end
+        end
       end
-      TableSorter.optimize size,tableData,results,cards
+
+      TableSorter.optimize size,tableData,results,cards,logger
       # results.sort! do |a,b|
       #   return -1 unless a[:group].title
       #   return 1 unless b[:group].title
@@ -84,7 +89,6 @@ class MainApp < Sinatra::Base
       #   return 1 unless b.desc
       #   a.desc <=> b.desc
       # end
-
       data = {
         theme:theme,
         cards:cards,

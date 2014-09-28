@@ -102,31 +102,33 @@ class TableSorter
     [minValue,minX,minY]
   end
 
-  def self.optimize size,tableData,h,v
+  def self.optimize size,tableData,h,v,logger
     calH = self.calH(size,tableData)
     calV = self.calV(size,tableData)
+    logger.info "data #{size} #{tableData} #{calH} #{calV}"
+
     loop{
       p [calH,calV]
       # self.print size,tableData
       # p '^^^^^^^^'
-      vH = searchH(size,tableData)
-      if(vH[0] < calH)
-        calH = vH[0]
+      result = searchH(size,tableData)
+      if(result[0] < calH)
+        calH = self.calH(size,tableData)
         calV = self.calV(size,tableData)
-        swapH(tableData,vH[1],vH[2])
-        swap v,vH[1],vH[2]
+        swapH(tableData,result[1],result[2])
+        swap v,result[1],result[2]
         # p calV,calH,tableData
-        # p "v #{vH[1]} #{vH[2]}"
+        logger.info "v #{result[1]} #{result[2]}"
         next
       end
 
-      vV = searchV(size,tableData)
-      if(vV[0] < calV)
-        calV = vV[0]
+      result = searchV(size,tableData)
+      if(result[0] < calV)
         calH = self.calH(size,tableData)
-        swapV(tableData,vV[1],vV[2])
-        swap h,vV[1],vV[2]
-        # p "h #{vV[1]} #{vV[2]}"
+        calV = self.calV(size,tableData)
+        swapV(tableData,result[1],result[2])
+        swap h,result[1],result[2]
+        logger.info "h #{result[1]} #{result[2]}"
 
         # p calV,calH,tableData
         next

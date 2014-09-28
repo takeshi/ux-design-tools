@@ -8,7 +8,7 @@ describe TableSorter, "TableSorting" do
     tableColomnSize = 10
 
     groups = ['a','b','c','d']
-    cards = (0...10).to_a
+    cards = (0...tableColomnSize).to_a
     tableData = [
       [1,3,5,7,8,9],
       [1,2,3,5],
