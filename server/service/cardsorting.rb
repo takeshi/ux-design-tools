@@ -1,3 +1,5 @@
+require './server/table_sorter'
+
 class MainApp < Sinatra::Base
 
   def getDetail cardsorting
@@ -65,16 +67,24 @@ class MainApp < Sinatra::Base
           vote << userId
         end
       end 
-      results.sort! do |a,b|
-        return -1 unless a[:group].title
-        return 1 unless b[:group].title
-        a[:group].title <=> b[:group].title
+      cards = theme.cards
+      size = cards.length
+      tableData = []
+      results.each do |result|
+        tableData << result[:votes].keys
       end
-      cards = theme.cards.sort do |a,b|
-        return -1 unless a.desc
-        return 1 unless b.desc
-        a.desc <=> b.desc
-      end
+      TableSorter.optimize size,tableData,results,cards
+      # results.sort! do |a,b|
+      #   return -1 unless a[:group].title
+      #   return 1 unless b[:group].title
+      #   a[:group].title <=> b[:group].title
+      # end
+      # cards = theme.cards.sort do |a,b|
+      #   return -1 unless a.desc
+      #   return 1 unless b.desc
+      #   a.desc <=> b.desc
+      # end
+
       data = {
         theme:theme,
         cards:cards,

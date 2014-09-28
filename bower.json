@@ -16,7 +16,8 @@
     "angular-dragdrop": "ganarajpr/angular-dragdrop#~1.0.1",
     "angular-xeditable": "~0.1.8",
     "TableDnD": "*",
-    "angular-scrollable-table": "*"
+    "angular-scrollable-table": "*",
+    "d3": "~3.4.11"
   },
   "devDependencies": {
     "angular-mocks": "1.2.16",

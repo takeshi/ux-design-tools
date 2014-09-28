@@ -55,6 +55,11 @@ angular
         templateUrl:'views/card/analize.html',
         controller:'CardAnalizeCtrl'
       })
+      .state('about',{
+        url:'/about',
+        templateUrl:'views/about.html',
+        controller:'AboutCtrl'
+      })      
       ;
 
   });

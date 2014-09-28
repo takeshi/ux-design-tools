@@ -1,5 +1,6 @@
 require 'sequel'
 require 'logger'
+require 'sinatra'
 
 DB = Sequel.connect('sqlite://cardsort.db')
 Sequel::Model.plugin :json_serializer
