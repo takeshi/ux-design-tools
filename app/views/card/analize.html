@@ -16,10 +16,10 @@
 
     <tbody>
       <tr ng-repeat="result in data.results">
-        <td style="width:150px">{{result.group.title}}</td>
+        <td style="width:150px">{{result.group.title|| '(No Name)' }}</td>
         <td style="width:150px" ng-repeat="card in data.cards">
           <span class="btn btn-default" ng-repeat="vote in result.votes[card.id]">
-            {{vote}}
+            {{vote||'(No Name)'}}
           </span>
           
         </td>

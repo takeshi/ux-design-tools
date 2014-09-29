@@ -14,11 +14,17 @@ class MainApp < Sinatra::Base
         # },
         # groups:cardsorting.groups,
         cardsortingCardAndGroups:cardsorting.cardsortingCardAndGroups,
-        unselectedCards:cardsorting.unselectedCards
+        # unselectedCards:cardsorting.unselectedCards
     }
+
+    unselectedCards = cardsorting.theme.cards;
     groups = []
 
     cardsorting.cardsortingCardAndGroups.each do |cag|
+      unselectedCards.delete_if do |e|
+        e.id == cag.card.id
+      end
+
       g = groups.find do |e| 
         e[:id] == cag.group.id 
       end
@@ -32,6 +38,7 @@ class MainApp < Sinatra::Base
       end
       g[:cards] << cag.card
     end
+    detail[:unselectedCards] = unselectedCards
     detail[:groups] = groups
     detail
   end
@@ -67,7 +74,7 @@ class MainApp < Sinatra::Base
           vote << userId
         end
       end 
-      cards = theme.cards
+      cards = theme.cards 
       size = cards.length
       tableData = []
       results.each do |result|
@@ -79,16 +86,7 @@ class MainApp < Sinatra::Base
       end
 
       TableSorter.optimize size,tableData,results,cards,logger
-      # results.sort! do |a,b|
-      #   return -1 unless a[:group].title
-      #   return 1 unless b[:group].title
-      #   a[:group].title <=> b[:group].title
-      # end
-      # cards = theme.cards.sort do |a,b|
-      #   return -1 unless a.desc
-      #   return 1 unless b.desc
-      #   a.desc <=> b.desc
-      # end
+  
       data = {
         theme:theme,
         cards:cards,
@@ -124,12 +122,12 @@ class MainApp < Sinatra::Base
       DB.transaction do
         cardSorting.theme = theme;
         cardSorting.save
-        theme.cards.each do |card|
-          unselectedCard = UnselectedCard.new
-          unselectedCard.card = card;
-          unselectedCard.cardsorting = cardSorting
-          unselectedCard.save
-        end
+        # theme.cards.each do |card|
+        #   unselectedCard = UnselectedCard.new
+        #   unselectedCard.card = card;
+        #   unselectedCard.cardsorting = cardSorting
+        #   unselectedCard.save
+        # end
       end
       result= {
         id:cardSorting.id,
@@ -154,7 +152,7 @@ class MainApp < Sinatra::Base
         return
       end
       CardsortingCardAndGroup.where(:cardsorting_id=>cardsorting.id).delete
-      UnselectedCard.where(:cardsorting_id=>cardsorting.id).delete
+      # UnselectedCard.where(:cardsorting_id=>cardsorting.id).delete
       cardsorting.delete
     end
     json 'success'
@@ -181,11 +179,15 @@ class MainApp < Sinatra::Base
       cardsorting.save
 
       CardsortingCardAndGroup.where(:cardsorting_id=>cardsorting.id).delete
-      UnselectedCard.where(:cardsorting_id=>cardsorting.id).delete
+      # UnselectedCard.where(:cardsorting_id=>cardsorting.id).delete
 
       reqCardsorting["groups"].each do |reqGroup|
-        title = reqGroup["title"] || '(未分類)';
-        group = Group.where(:theme_id=>theme.id,:title=>title).first
+        title = reqGroup["title"];
+        group = unless title
+            Group[reqGroup["id"]]
+          else
+            Group.where(:theme_id=>theme.id,:title=>title).first
+        end
         unless group
           group = Group[reqGroup["id"]]
           unless group
@@ -230,22 +232,22 @@ class MainApp < Sinatra::Base
       end
 
      # logger.info "unselected card #{reqCardsorting["unselectedCards"]}"
-      reqCardsorting["unselectedCards"].each do |reqUnselectedCard|
-        card = Card[reqUnselectedCard["id"]]
-        unless card
-          card = Card.where(:theme_id=>theme.id,:desc=>reqUnselectedCard["desc"]).first
-          unless card
-            card = Card.new
-            card.theme = theme
-          end            
-        end
-        card.desc = reqUnselectedCard["desc"]
-        card.save
-        unselectedCard = UnselectedCard.new
-        unselectedCard.card = card;
-        unselectedCard.cardsorting = cardsorting
-        unselectedCard.save
-      end
+      # reqCardsorting["unselectedCards"].each do |reqUnselectedCard|
+      #   card = Card[reqUnselectedCard["id"]]
+      #   unless card
+      #     card = Card.where(:theme_id=>theme.id,:desc=>reqUnselectedCard["desc"]).first
+      #     unless card
+      #       card = Card.new
+      #       card.theme = theme
+      #     end            
+      #   end
+      #   card.desc = reqUnselectedCard["desc"]
+      #   card.save
+      #   unselectedCard = UnselectedCard.new
+      #   unselectedCard.card = card;
+      #   unselectedCard.cardsorting = cardsorting
+      #   unselectedCard.save
+      # end
 
       json cardsorting
     end

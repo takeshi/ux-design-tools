@@ -40,7 +40,7 @@ class MainApp < Sinatra::Base
           end
 
         unless exsist
-          UnselectedCard.where(:card_id=>card.id).delete
+          # UnselectedCard.where(:card_id=>card.id).delete
           CardsortingCardAndGroup.where(:card_id=>card.id).delete
           card.delete
         end
@@ -73,9 +73,9 @@ class MainApp < Sinatra::Base
         c.cardsortingCardAndGroups.each do |c|
           c.delete 
         end
-        c.unselectedCards.each do |c|
-          c.delete 
-        end
+        # c.unselectedCards.each do |c|
+        #   c.delete 
+        # end
         c.delete 
       end
 
